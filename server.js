@@ -19,6 +19,15 @@ app.get('/register', (req, res)=> {
     res.render("register")
 })
 
-
+app.post('/register', async (req, res) => {
+    await users.create({
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        username: req.body.username,
+        password: req.body.password,
+        email: req.body.email,
+    })
+    res.redirect('/login')
+})
 
 app.listen(3000, console.log('Server running on port 3000'))
