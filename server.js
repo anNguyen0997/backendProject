@@ -11,23 +11,49 @@ const bodyParser = require('body-parser')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.get('/login', (req, res)=> {
+// login to get existing user(s)
+app.get('/login', async(req, res)=> {   
     res.render("login")
+
+    let loggedUsers = await users.findOne({
+        where: {
+            username: req.body.username,
+            password: req.body.password
+        }
+    })
+    if (loggedUsers == null) {
+        res.statusCode = 400
+        res.send('this user does not exist')
+    } else {
+        res.redirect('/stats')
+    }
 })
+
 
 app.get('/register', (req, res)=> {
     res.render("register")
 })
 
 app.post('/register', async (req, res) => {
-    await users.create({
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        username: req.body.username,
-        password: req.body.password,
-        email: req.body.email,
+    let userExists = await users.findAll({
+        where: {
+            username: req.body.username,
+            email: req.body.email
+        }
     })
-    res.redirect('/login')
+    if (userExists != null) {
+        res.statusCode = 400
+        res.send('This user already exists')
+    } else {
+        await users.create({
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email,
+        })
+        res.redirect('/login')
+    }
 })
 
 app.listen(3000, console.log('Server running on port 3000'))
