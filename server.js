@@ -13,6 +13,19 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/login', (req, res)=> {                                                            // Renders Login Page
     res.render("login")
+
+    let loggedUsers = await users.findOne({
+        where: {
+            username: req.body.username,
+            password: req.body.password
+        }
+    })
+    if (loggedUsers == null) {
+        res.statusCode = 400
+        res.send('this user does not exist')
+    } else {
+        res.redirect('/stats')
+    }
 })
 
 app.get('/register', (req, res)=> {                                                         // Renders Register Page
@@ -40,20 +53,35 @@ function getStats(){
 }
 
 app.post('/register', async (req, res) => {
-    await users.create({
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        username: req.body.username,
-        password: req.body.password,
-        email: req.body.email,
+    let userExists = await users.findAll({
+        where: {
+            username: req.body.username,
+            email: req.body.email
+        }
     })
 
-    userstats = getStats()
-    userstats['username'] = req.body.username
-
-    await stats.create(userstats)
-    
     res.redirect('/login')
+    if (userExists != null) {
+        res.statusCode = 400
+        res.send('This user already exists')
+    } 
+    else {
+        await users.create({
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email,
+        })
+
+        userstats = getStats()
+        userstats['username'] = req.body.username
+    
+        await stats.create(userstats)
+
+
+        res.redirect('/login')
+    }
 })
 
 app.listen(3000, console.log('Server running on port 3000'))
