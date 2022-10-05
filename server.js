@@ -6,3 +6,4 @@ const { users,stats,index } = require('./models')
 const sequelize = new Sequelize('postgres://postgres:testing1234xA@localhost:5432/wes_database')
 app.use(express.json())
 
+//hello
