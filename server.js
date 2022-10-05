@@ -11,7 +11,7 @@ const bodyParser = require('body-parser')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
-app.get('/login', (req, res)=> {                                                            // Renders Login Page
+app.get('/login', async(req, res)=> {                                                            // Renders Login Page
     res.render("login")
 
     let loggedUsers = await users.findOne({
