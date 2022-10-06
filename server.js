@@ -51,7 +51,7 @@ function getStats(){
 }
 //------------------------------------------------------------------------------------------------------------------------
 app.get('/register', (req, res)=> {                                                         // Renders Register Page
-    res.render("register",{msg:'Hello'})                                                    // Renders register.ejs
+    res.render("register",{msg:'Join the battle'})                                                    // Renders register.ejs
 })
 //----------------------------------------------------------
 app.post('/registerUser', async (req, res) => {                                              // Creates user in users table
