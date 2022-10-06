@@ -16,30 +16,55 @@
         <div id="formDiv">
             <form action="/check" method="post">
                 <div id="formBox">
-                    <legend>Log In</legend>
+                    <!-- <legend>Log In</legend> -->
                     <% {%>
                         Username: <input type="text" name="username" /><br><br>
                         Password:  <input type="text" name="password" /><br><br>
-                        <input type="submit" value="Log in"/><br><br><hr>
                     <%} %>
+                    <input id="submitButton" type="submit" value="Login"/><br><br>
                 </div>
             </form>
+        </div>
+
+        <div id="footer">
+            
         </div>
 
     </div>  
 
 <style> /* styling page */
     body {
-        background-color: cornflowerblue;
+        background-image: url('../assets/bgLogin.png');
+        background-color: #DBC8AC;
     }
 
     #container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+       display: flex;
+       flex-direction: column;
+       align-items: center;
     }
 
     #formDiv {
+        border: 2px solid black;
+        border-radius: 10px;
+        padding-top: 30px;
+        padding-bottom: 10px;
+        padding-left: 40px;
+        padding-right: 40px;
+
+        width: 40%;
+        background-color: white;
+    }
+
+    #formBox {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #submitButton {
+        width: 60%;
+        padding: 3%;
+        align-self: center;
         border-radius: 10px;
     }
 
