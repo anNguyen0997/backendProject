@@ -3,13 +3,28 @@ const app = express();
 
 const { Sequelize } = require('sequelize');                                                 // Initializes sequelize
 const { users,stats } = require('./models')                                                 // Initializes models
-const sequelize = new Sequelize('postgres://jonathanbatalla@localhost:5432/postgres')       // Connects to database
-
+//const sequelize = new Sequelize('postgres://jonathanbatalla@localhost:5432/postgres')       // Connects to database
+const sequelize = new Sequelize('postgres://postgres:testing1234xA@localhost:5432/backendBase')
 app.use(express.json())                                                                     // Allows use of Json objects
 app.set('view engine', 'ejs')                                                               // Allows display of ejs files
 const bodyParser = require('body-parser')
-
 app.use(bodyParser.urlencoded({ extended: false }))
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+const myPlaintextPassword = 's0/4$$w0rD';
+const someOtherPlaintextPassword = 'not_bacon';
+
+function passwordHasher(userPassword){
+    let passwordHash = bcrypt.hash(userPassword, saltRounds, function(err, hash) {
+        // Store hash in your password DB.
+        return passwordHash
+    });
+}
+function passwordChecker(password){
+    bcrypt.compare(password, hash, function(err, result) {
+        // result == true
+    });
+}
 
 app.get('/login', async(req, res)=> {                                                        // Renders Login Page
     res.render("login")
@@ -36,7 +51,6 @@ app.get('/stats/:userName', async (req, res) => {                               
     let player = await stats.findOne({
         where:{ username: req.params.userName}
     })
-    
     res.render("stats",{user: player})                                                      // Sends stats from database to stats.ejs
 })
 
