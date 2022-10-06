@@ -1,4 +1,4 @@
-<form action="/register" method="post">
+<form action="/registerUser" method="post">
     <div>
         <legend>Registration</legend>
         <% {%>
@@ -9,5 +9,6 @@
             password:  <input type="text" name="password"/><br><br>
             <input type="submit" value="accept"/><br><br><hr>
         <%} %>
+            Error: <%= msg %>
     </div>
 </form>
