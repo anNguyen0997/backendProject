@@ -3,11 +3,13 @@ const app = express();
 app.use(express.json())                                                                     // Allows use of Json objects
 app.set('view engine', 'ejs')                                                               // Allows display of ejs files
 
+app.use(express.static('assets'))
+
 const { Sequelize } = require('sequelize');                                                 // Initializes sequelize
 const { users,stats } = require('./models')                                                 // Initializes models
 //const sequelize = new Sequelize('postgres://jonathanbatalla@localhost:5432/postgres')     // Connects to database
-const sequelize = new Sequelize('postgres://postgres:testing1234xA@localhost:5432/backendBase')
-
+//const sequelize = new Sequelize('postgres://postgres:testing1234xA@localhost:5432/backendBase')
+const sequelize = new Sequelize('postgres://rory@localhost:5432/backendBase')  
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
