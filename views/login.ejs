@@ -1,10 +1,36 @@
-<form action="/getuser" method="get">
-    <div>
-        <legend>Log In</legend>
-        <% {%>
-            Username: <input type="text" name="username" /><br><br>
-            Password:  <input type="text" name="password" /><br><br>
-            <input type="submit" value="Log in"/><br><br><hr>
-        <%} %>
-    </div>
-</form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <div id="container">
+
+        <div id="header">
+            <h2>Valorant login</h2>
+        </div>
+    
+        <div id="formDiv">
+            <form action="/getuser" method="get">
+                <div id="formBox">
+                    <legend>Log In</legend>
+                    <% {%>
+                        Username: <input type="text" name="username" /><br><br>
+                        Password:  <input type="text" name="password" /><br><br>
+                        <input type="submit" value="Log in"/><br><br><hr>
+                    <%} %>
+                </div>
+            </form>
+        </div>
+
+    </div>  
+
+<style> /* styling page */
+    
+</style>
+    
+</body>
+</html>

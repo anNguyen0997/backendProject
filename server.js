@@ -6,13 +6,17 @@ const { users,stats } = require('./models')                                     
 const sequelize = new Sequelize('postgres://jonathanbatalla@localhost:5432/postgres')       // Connects to database
 
 app.use(express.json())                                                                     // Allows use of Json objects
+                                                                 
 app.set('view engine', 'ejs')                                                               // Allows display of ejs files
+                                                            
 const bodyParser = require('body-parser')
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
+
+
 app.get('/login', async(req, res)=> {                                                        // Renders Login Page
-    res.render("login")
+    res.render('login')
 
     let loggedUsers = await users.findOne({
         where: {
