@@ -14,7 +14,7 @@
         </div>
     
         <div id="formDiv">
-            <form action="/getuser" method="get">
+            <form action="/check" method="post">
                 <div id="formBox">
                     <legend>Log In</legend>
                     <% {%>
@@ -37,6 +37,10 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    #formDiv {
+        border-radius: 10px;
     }
 
 
