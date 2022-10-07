@@ -5,77 +5,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stats</title>
+    <link rel="stylesheet" href="/css/stats.css">
 </head>
+<html>
 
-<body>
-
-    <div id="main">
+    <body onload="">
+    
+        <div id="main">
+            
+            <div id="thePlayer">
+                <h5> <%= user.username %> </h5>
+            </div>
         
-        <div id="thePlayer">
-            <h5> <%= user.username %> </h5>
-        </div>
-    
-    
-        <div id="warStats">
-    
-            <div id="weaponBox">
-                <img src="" alt="gunPic">
-                <p><%= user.gun %></p>
+        
+            <div id="warStats">
+        
+                <div id="weaponBox">
+                    <img src="/assets/guns/Stinger.webp" alt="gunPic" id="gun">
+                    <p><%= user.gun %></p>
+                </div>
+        
+                <div id="agentBox">
+                    <img src="/assets/agents/Cypher.jpeg" alt="agentPic" id="agent">
+                    <p><%= user.agent %></p>
+                </div>
+        
+                <div id="rankBox">
+                    <img src="/assets/ranks/Radiant_Rank.png" alt="rankPic" id="rank">
+                    <p><%= user.rank %></p>
+                </div>
+        
             </div>
-    
-            <div id="agentBox">
-                <img src="" alt="agentPic">
-                <p><%= user.agent %></p>
+        
+            <div id="statsBox">
+                <div id="kd">K/D: <%= user.kd %></div>
+                <div id="winrate">W/L: <%= user.winRate %>%</div>
             </div>
-    
-            <div id="rankBox">
-                <img src="" alt="rankPic">
-                <p><%= user.rank %></p>
-            </div>
-    
+
+           
+           
         </div>
-    
-        <div id="statsBox">
-            <div id="kd">K/D: <%= user.kd %></div>
-            <div id="winrate">W/L: <%= user.winRate %>%</div>
-        </div>
-       
-    </div>
+    </body>
+</html>
 
+<script>
+    let string = '<%- JSON.stringify(user) %>'
+    let user = JSON.parse(string)
+    console.log(string)
+    console.log(user)
+    console.log('/assets/agents/' +  user.gun + '.webp')
 
+    document.getElementById('gun').src = '/assets/guns/' +  user.gun + '.webp'
+    document.getElementById('agent').src = '/assets/agents/' + user.agent + '.jpeg'
+    document.getElementById('rank').src = '/assets/ranks/' + user.rank + '.png'
+</script>
 
-
-
-
-
-
-
-</body>
-
-<style>
-body{
-    background-color: antiquewhite;
-    display: flex;
-    justify-content: center;
-}
-#main{
-    background-color: grey;
-    width: 75%;
-    border-radius: 10px;
-    padding: 20px;
-}
-#thePlayer{
-    display: flex;
-    justify-content: center;
-}
-#warStats{
-    display: flex;
-    justify-content: space-around;
-    
-}
-#statsBox{
-    display: flex;
-    justify-content: space-around;
-    align-content: space-around;
-}
-</style>
