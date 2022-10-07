@@ -4,24 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/css/login.css" type="text/css">
+    <link rel="stylesheet" href="/css/login.css">
     <title>Login</title>
 </head>
 <body>
     <div id="container">
-        <div id="header">
-            <h2>Valorant login</h2>
-        </div>
-        
+
         <div id="formDiv">
+            <div id="header">
+                <h2>Sign In</h2>
+            </div>
             <form action="/check" method="post">
                 <div id="formBox">
-                    <!-- <legend>Log In</legend> -->
+                    
                     <% {%>
-                        Username: <input type="text" name="username" /><br><br>
-                        Password:  <input type="text" name="password" /><br><br>
+                        <input id="userIn" type="text" name="username" placeholder="username" /><br><br>
+                        <input id="pwIn" type="text" name="password" placeholder="password"/><br><br>
                     <%} %>
                     <input id="submitButton" type="submit" value="Login"/><br><br>
+
+                    <a href="./register.ejs" id="registerLink">create account</a>
                 </div>
             </form>
         </div>
@@ -32,52 +34,6 @@
 
     </div>  
 
-<<<<<<< HEAD
-
-=======
-<style> /* styling page */
-    body {
-        background-image: url('../bgLogin.png');
-        background-size:cover;
-        background-repeat: no-repeat;
-    }
-
-    #container {
-       display: flex;
-       flex-direction: column;
-       align-items: center;
-    
-    }
-
-    #formDiv {
-        border: 2px solid black;
-        border-radius: 10px;
-        padding-top: 30px;
-        padding-bottom: 10px;
-        padding-left: 40px;
-        padding-right: 40px;
-
-        width: 40%;
-        background-color: white;
-    }
-
-    #formBox {
-        display: flex;
-        flex-direction: column;
-       
-    }
-
-    #submitButton {
-        width: 60%;
-        padding: 3%;
-        align-self: center;
-        border-radius: 10px;
-    }
-
-    
-</style>
->>>>>>> main
-    
 </body>
 <script src="../server.js"></script>
 </html>
