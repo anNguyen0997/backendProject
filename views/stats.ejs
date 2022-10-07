@@ -12,9 +12,9 @@
     <body onload="">
     
         <div id="main">
-            
+
             <div id="thePlayer">
-                <h5> <%= user.username %> </h5>
+                <h2 id="username"> <%= user.username.toUpperCase() %> </h2>
             </div>
         
         
@@ -26,7 +26,7 @@
                 </div>
         
                 <div id="agentBox">
-                    <img src="/assets/agents/Cypher.jpeg" alt="agentPic" id="agent">
+                    <img src="/assets/agents/Brimstone.png" alt="agentPic" id="agent">
                     <p><%= user.agent %></p>
                 </div>
         
@@ -41,10 +41,9 @@
                 <div id="kd">K/D: <%= user.kd %></div>
                 <div id="winrate">W/L: <%= user.winRate %>%</div>
             </div>
-
-           
-           
+                
         </div>
+
     </body>
 </html>
 
@@ -56,7 +55,7 @@
     console.log('/assets/agents/' +  user.gun + '.webp')
 
     document.getElementById('gun').src = '/assets/guns/' +  user.gun + '.webp'
-    document.getElementById('agent').src = '/assets/agents/' + user.agent + '.jpeg'
+    document.getElementById('agent').src = '/assets/agents/' + user.agent + '.png'
     document.getElementById('rank').src = '/assets/ranks/' + user.rank + '.png'
 </script>
 
