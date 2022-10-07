@@ -11,10 +11,10 @@ app.use(express.static('assets'))
 
 const { Sequelize } = require('sequelize');                                                 // Initializes sequelize
 const { users,stats } = require('./models')                                                 // Initializes models
-//const sequelize = new Sequelize('postgres://jonathanbatalla@localhost:5432/postgres')     // Connects to database
-//const sequelize = new Sequelize('postgres://postgres:testing1234xA@localhost:5432/backendBase')
-const sequelize = new Sequelize('postgres://rory@localhost:5432/backendBase')  
-
+// const sequelize = new Sequelize('postgres://jonathanbatalla@localhost:5432/postgres')     // Connects to database
+// const sequelize = new Sequelize('postgres://postgres:testing1234xA@localhost:5432/backendBase')
+// const sequelize = new Sequelize('postgres://rory@localhost:5432/backendBase')  
+const sequelize = new Sequelize('postgres://wenhwzxhzxocxo:dc1b6e72a92c00a43814a461ab66e834f01da5260663128e5765def101f4c274@ec2-3-93-206-109.compute-1.amazonaws.com:5432/d2ejtutdcnmsab')
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -78,7 +78,7 @@ function getStats(){
     userstats = {                                                                           // Generate random stats for user
     agent: agents[Math.floor(Math.random()*20)],
     gun: guns[Math.floor(Math.random()*19)],
-    rank: rank[Math.floor(Math.random()*10)] + ' ' + Math.ceil(Math.random()*3),
+    rank: rank[Math.floor(Math.random()*9)] + ' ' + Math.ceil(Math.random()*3),
     kd: (Math.random()*3).toFixed(2),
     winRate: Math.floor(Math.random()*101)
     }
@@ -149,7 +149,7 @@ app.get('/login', async(req, res)=> {                                           
     res.render("login")                                                                      // Renders login.ejs
 })
 //----------------------------------------------------------
-app.post('/check', async (req,res) => {                                                     // Called from login.ejs
+app.post('/stats', async (req,res) => {                                                     // Called from login.ejs
    
     let loggedUser = await users.findOne({
         where: {
@@ -160,29 +160,27 @@ app.post('/check', async (req,res) => {                                         
     if (loggedUser == null) {                                                               // Checks if user and pass are correct
         res.render('login',{msg:'User does not exist'})
     } 
-
-    try {
-        if(await bcrypt.compare(req.body.password, loggedUser.password)) {                  //Checks password from dataBase
-          res.redirect('/stats/' + req.body.username)                                       //Redirects to stats/(username of user)
-
-        } else {
-          res.send('Not Allowed')
+    else {
+        try {
+            if (await bcrypt.compare(req.body.password, loggedUser.password)) {                  //Checks password from dataBase
+            //   res.redirect('/stats/' + req.body.username)                                     //Redirects to stats/(username of user)
+            let player = await stats.findOne({
+                where: {
+                    username: req.body.username
+                }
+            })
+            res.render("stats",{user: player})                                                  // Renders stats.ejs and sends stats from database to stats.ejs
+    
+            } 
+            else {
+              res.send('Not Allowed')
+            }
+          } 
+          catch {
+            res.status(500).send()
         }
-      } 
-      catch {
-        res.status(500).send()
     }
-})
-//----------------------------------------------------------
-app.get('/stats/:username', async (req, res) => {                                           // Renders Stats Page
-    let player = await stats.findOne({
-        where: {
-            username: req.params.username
-        }
-    })
-  
-    res.render("stats",{user: player})                                                      // Renders stats.ejs and sends stats from database to stats.ejs
 })
 //------------------------------------------------------------------------------------------------------------------------
 
-app.listen(3000, console.log('Server running on port 3000'))
+app.listen(3001, console.log('Server running on port 3000'))

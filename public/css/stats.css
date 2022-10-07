@@ -1,22 +1,57 @@
+html { 
+    background: url('/assets/background/bgStats3.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'FF Mark W05', sans-serif;
+  }
 body{
-    background-color: antiquewhite;
     display: flex;
     justify-content: center;
+  
 }
 #main{
-    background-color: grey;
-    width: 75%;
+    position: absolute;
+    top: 10%;
+    background-color: #0f1923;
+    color:  #ece8e1;
     border-radius: 10px;
     padding: 20px;
+    width: auto;
+    height: auto;
+    opacity: .95;
+}
+#username{
+    
+    font-weight: 500;
+
 }
 #thePlayer{
     display: flex;
     justify-content: center;
+   
 }
 #warStats{
     display: flex;
     justify-content: space-around;
-    
+}
+#weaponBox{
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#agentBox{
+    width: 20vw;
+}
+#rankBox{
+    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+   
 }
 #statsBox{
     display: flex;
@@ -24,14 +59,22 @@ body{
     align-content: space-around;
 }
 #gun{
-    width: 20vw;
-    height: 20vh;
+    width: 15vw;
+    height: 10vh;
+    position: relative;
+    left: 12%;
 }
 #agent{
     width:20vw;
-    height:30vh;
+    height:50vh;
+    
 }
 #rank{
-    width: 20vw;
+    width: 15vw;
     height: 20vh;
+    position: relative;
+    left: 12%;
+}
+p{
+    text-align: center;
 }
