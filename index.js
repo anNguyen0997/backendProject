@@ -37,7 +37,7 @@ function getStats(){
     userstats = {                                                                           // Generate random stats for user
     agent: agents[Math.floor(Math.random()*20)],
     gun: guns[Math.floor(Math.random()*19)],
-    rank: rank[Math.floor(Math.random()*10)] + ' ' + Math.ceil(Math.random()*3),
+    rank: rank[Math.floor(Math.random()*9)] + ' ' + Math.ceil(Math.random()*3),
     kd: (Math.random()*3).toFixed(2),
     winRate: Math.floor(Math.random()*101)
     }
@@ -97,7 +97,7 @@ app.get('/login', async(req, res)=> {                                           
     res.render("login")                                                                      // Renders login.ejs
 })
 //----------------------------------------------------------
-app.post('/check', async (req,res) => {                                                     // Called from login.ejs
+app.post('/stats', async (req,res) => {                                                     // Called from login.ejs
    
     let loggedUser = await users.findOne({
         where: {
@@ -108,28 +108,26 @@ app.post('/check', async (req,res) => {                                         
     if (loggedUser == null) {                                                               // Checks if user and pass are correct
         res.render('login',{msg:'User does not exist'})
     } 
-
-    try {
-        if(await bcrypt.compare(req.body.password, loggedUser.password)) {                  //Checks password from dataBase
-          res.redirect('/stats/' + req.body.username)                                       //Redirects to stats/(username of user)
-
-        } else {
-          res.send('Not Allowed')
+    else {
+        try {
+            if (await bcrypt.compare(req.body.password, loggedUser.password)) {                  //Checks password from dataBase
+            //   res.redirect('/stats/' + req.body.username)                                     //Redirects to stats/(username of user)
+            let player = await stats.findOne({
+                where: {
+                    username: req.body.username
+                }
+            })
+            res.render("stats",{user: player})                                                  // Renders stats.ejs and sends stats from database to stats.ejs
+    
+            } 
+            else {
+              res.send('Not Allowed')
+            }
+          } 
+          catch {
+            res.status(500).send()
         }
-      } 
-      catch {
-        res.status(500).send()
     }
-})
-//----------------------------------------------------------
-app.get('/stats/:username', async (req, res) => {                                           // Renders Stats Page
-    let player = await stats.findOne({
-        where: {
-            username: req.params.username
-        }
-    })
-  
-    res.render("stats",{user: player})                                                      // Renders stats.ejs and sends stats from database to stats.ejs
 })
 //------------------------------------------------------------------------------------------------------------------------
 
