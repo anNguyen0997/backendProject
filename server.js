@@ -7,11 +7,13 @@ app.use('/css',express.static(__dirname + 'public/css'))
 app.use('/assets',express.static(__dirname + 'public/assets'))
 app.use('/js',express.static(__dirname + 'public/js'))
 
+app.use(express.static('assets'))
+
 const { Sequelize } = require('sequelize');                                                 // Initializes sequelize
 const { users,stats } = require('./models')                                                 // Initializes models
 //const sequelize = new Sequelize('postgres://jonathanbatalla@localhost:5432/postgres')     // Connects to database
-const sequelize = new Sequelize('postgres://postgres:testing1234xA@localhost:5432/backendBase')
-
+//const sequelize = new Sequelize('postgres://postgres:testing1234xA@localhost:5432/backendBase')
+const sequelize = new Sequelize('postgres://rory@localhost:5432/backendBase')  
 
 
 const bodyParser = require('body-parser')
@@ -19,21 +21,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 const bcrypt = require('bcrypt');                                                           // Imports package for enrypting passwords
 const saltRounds = 10;
-const myPlaintextPassword = 's0/4$$w0rD';
-const someOtherPlaintextPassword = 'not_bacon';
 //------------------------------------------------------------------------------------------------------------------------
-function passwordHasher(userPassword){                                                      // Encrypts the Password
-    let passwordHash = bcrypt.hash(userPassword, saltRounds, function(err, hash) {
-        // Store hash in your password DB.
-        return passwordHash
-    });
-}
-//----------------------------------------------------------
-function passwordChecker(password){                                                         // Decrypts the Password
-    bcrypt.compare(password, hash, function(err, result) {
-        // result == true
-    });
-}
+
+
 //----------------------------------------------------------
 function getStats(){
     agents = ['Fade','Neon','Chamber','Skye','Yoru','Astra','KAYO','Phoenix','Raze',       // List of all Valorant Agents
@@ -82,11 +72,12 @@ app.post('/registerUser', async (req, res) => {                                 
             res.render('register',{msg:'Email already exist'})
         }
         else {
+            const hashedPassword = await bcrypt.hash(req.body.password, saltRounds)                   // Hashes user password for database
             await users.create({                                                              // Creates instance in users table
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
                 username: req.body.username,
-                password: req.body.password,
+                password: hashedPassword,
                 email: req.body.email,
             })
     
@@ -111,17 +102,24 @@ app.post('/check', async (req,res) => {                                         
     let loggedUser = await users.findOne({
         where: {
             username: req.body.username,
-            password: req.body.password
         }
     })
-
  
     if (loggedUser == null) {                                                               // Checks if user and pass are correct
         res.render('login',{msg:'User does not exist'})
     } 
-    else {
-        res.redirect('/stats/' + req.body.username)                                         // Redirects to stats/(username of user)
-    }    
+
+    try {
+        if(await bcrypt.compare(req.body.password, loggedUser.password)) {                  //Checks password from dataBase
+          res.redirect('/stats/' + req.body.username)                                       //Redirects to stats/(username of user)
+
+        } else {
+          res.send('Not Allowed')
+        }
+      } 
+      catch {
+        res.status(500).send()
+    }
 })
 //----------------------------------------------------------
 app.get('/stats/:username', async (req, res) => {                                           // Renders Stats Page

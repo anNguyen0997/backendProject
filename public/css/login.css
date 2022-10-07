@@ -1,4 +1,5 @@
 body {
+<<<<<<< HEAD
     background-image: url('../assets/bgLogin.png');
     background-color: #DBC8AC;
 }
@@ -33,4 +34,8 @@ body {
     border-radius: 10px;
 }
 
+=======
+    background-image: url('../../assets/bgLogin.png');
+}
+>>>>>>> main
 
