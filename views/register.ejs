@@ -4,24 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/register.css">
     <title>Register</title>
     <link rel="stylesheet" href="/css/register.css">
 </head>
 <body>
-    <form action="/registerUser" method="post" id="container">
-        <div id="formBox">
-            <legend>Registration</legend>
-            <% {%>
-                First name: <input type="text" name="firstname"/><br><br>
-                Last name:  <input type="text" name="lastname"/><br><br>
-                Username:  <input type="text" name="username"/><br><br>
-                Email:  <input type="text" name="email"/><br><br>
-                Password:  <input type="text" name="password"/><br><br>
-                <input type="submit" value="accept" id="button"/><br><br><hr>
-            <%} %>
-                <p id="msg"><%= msg %></p>
+    <div id="container">
+
+        <div id="formDiv">
+            <div id="header">
+                <h2>Register account</h2>
+            </div>
+            
+            <form action="/registerUser" method="post">
+                <div id="formBox">
+        
+                    <% {%>
+                        <input id="userIn" type="text" name="firstname" placeholder="first name"/><br>
+                        <input id="userIn" type="text" name="lastname" placeholder="last name"/><br>
+                        <input id="userIn" type="text" name="username" placeholder="username"/><br>
+                        <input id="userIn" type="text" name="email" placeholder="email"/><br>
+                        <input id="userIn" type="text" name="password" placeholder="password"/><br><br>
+
+                        <input type="submit" value="register" id="submitButton"/><br>
+                    <%} %>
+                    
+                        <p id="msg"><%= msg %></p>
+                </div>
+            </form>
+
         </div>
-    </form>
+
+        <div id="footer">
+
+        </div>
+
+    </div>
 
 </body>
+<script src="../server.js"></script>
+</html>
+
 
