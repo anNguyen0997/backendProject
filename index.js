@@ -16,26 +16,6 @@ const { users,stats } = require('./models')                                     
 // const sequelize = new Sequelize('postgres://rory@localhost:5432/backendBase')  
 const sequelize = new Sequelize('postgres://wenhwzxhzxocxo:dc1b6e72a92c00a43814a461ab66e834f01da5260663128e5765def101f4c274@ec2-3-93-206-109.compute-1.amazonaws.com:5432/d2ejtutdcnmsab')
 
-sequelize = new Sequelize(process.env.DATABASE_URL, {
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false
-      }
-    }
-  }
-);
-
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
-
-
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
 
