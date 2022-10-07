@@ -2,6 +2,10 @@ const express = require('express');                                             
 const app = express();
 app.use(express.json())                                                                     // Allows use of Json objects
 app.set('view engine', 'ejs')                                                               // Allows display of ejs files
+app.use(express.static('public'))
+app.use('/css',express.static(__dirname + 'public/css'))
+app.use('/assets',express.static(__dirname + 'public/assets'))
+app.use('/js',express.static(__dirname + 'public/js'))
 
 app.use(express.static('assets'))
 
@@ -10,6 +14,7 @@ const { users,stats } = require('./models')                                     
 //const sequelize = new Sequelize('postgres://jonathanbatalla@localhost:5432/postgres')     // Connects to database
 //const sequelize = new Sequelize('postgres://postgres:testing1234xA@localhost:5432/backendBase')
 const sequelize = new Sequelize('postgres://rory@localhost:5432/backendBase')  
+
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -21,7 +26,7 @@ const saltRounds = 10;
 
 //----------------------------------------------------------
 function getStats(){
-    agents = ['Fade','Neon','Chamber','Skye','Yoru','Astra','KAY/O','Phoenix','Raze',       // List of all Valorant Agents
+    agents = ['Fade','Neon','Chamber','Skye','Yoru','Astra','KAYO','Phoenix','Raze',       // List of all Valorant Agents
     'Brimstone','Jett','Sage','Viper','Breach','Cypeher','Sova','Omen','Reyna','Killjoy']
     
     guns = ['Operator','Vandal','Phantom','Classic','Judge','Marshall','Odin','Sheriff',    // List of all Valorant guns
@@ -93,9 +98,7 @@ app.get('/login', async(req, res)=> {                                           
 })
 //----------------------------------------------------------
 app.post('/check', async (req,res) => {                                                     // Called from login.ejs
-    console.log(req.body.username)
-    console.log('inside check')
-
+   
     let loggedUser = await users.findOne({
         where: {
             username: req.body.username,
@@ -125,6 +128,7 @@ app.get('/stats/:username', async (req, res) => {                               
             username: req.params.username
         }
     })
+  
     res.render("stats",{user: player})                                                      // Renders stats.ejs and sends stats from database to stats.ejs
 })
 //------------------------------------------------------------------------------------------------------------------------
