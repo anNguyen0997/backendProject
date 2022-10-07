@@ -50,9 +50,6 @@
 <script>
     let string = '<%- JSON.stringify(user) %>'
     let user = JSON.parse(string)
-    console.log(string)
-    console.log(user)
-    console.log('/assets/agents/' +  user.gun + '.webp')
 
     document.getElementById('gun').src = '/assets/guns/' +  user.gun + '.webp'
     document.getElementById('agent').src = '/assets/agents/' + user.agent + '.png'
