@@ -94,7 +94,7 @@ app.get('/register', (req, res)=> {                                             
     res.render("register",{msg:'Join the battle'})                                                    // Renders register.ejs
 })
 //----------------------------------------------------------
-app.post('/registerUser', async (req, res) => {                                              // Creates user in users table
+app.post('/register', async (req, res) => {                                              // Creates user in users table
     let userExists = await users.findAll({
         where: {
             username: req.body.username
