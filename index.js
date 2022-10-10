@@ -12,9 +12,9 @@ app.use(express.static('assets'))
 const { Sequelize } = require('sequelize');                                                 // Initializes sequelize
 const { users,stats } = require('./models')                                                 // Initializes models
 // const sequelize = new Sequelize('postgres://jonathanbatalla@localhost:5432/postgres')     // Connects to database
-// const sequelize = new Sequelize('postgres://postgres:testing1234xA@localhost:5432/backendBase')
+const sequelize = new Sequelize('postgres://postgres:testing1234xA@localhost:5432/backendBase')
 // const sequelize = new Sequelize('postgres://rory@localhost:5432/backendBase')  
-const sequelize = new Sequelize('postgres://wenhwzxhzxocxo:dc1b6e72a92c00a43814a461ab66e834f01da5260663128e5765def101f4c274@ec2-3-93-206-109.compute-1.amazonaws.com:5432/d2ejtutdcnmsab')
+//const sequelize = new Sequelize('postgres://wenhwzxhzxocxo:dc1b6e72a92c00a43814a461ab66e834f01da5260663128e5765def101f4c274@ec2-3-93-206-109.compute-1.amazonaws.com:5432/d2ejtutdcnmsab')
 
 const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -23,7 +23,6 @@ const bcrypt = require('bcrypt');                                               
 const saltRounds = 10;
 //------------------------------------------------------------------------------------------------------------------------
 function lettersAndNumbersCheck(word){
-    //return /^[A-Za-z0-9]*$/.test(str);
     if(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/.test(word)){
         console.log("this password contains both numbers and letters 8min 20max ")
         return true 
@@ -32,7 +31,6 @@ function lettersAndNumbersCheck(word){
         console.log("password was not good")
         return false
     }
-    //^(?=.*[a-zA-Z])(?=.*[0-9])
 }
 function lengthCheck(item, minLength, maxLength){                                           // checks the length of what is passed in
     let itemLength = item.length;
@@ -119,7 +117,7 @@ app.post('/register', async (req, res) => {                                     
         else if(lettersOnly(req.body.firstname)==false||lettersOnly(req.body.lastname)==false||lettersOnly(req.body.username)==false){      
             res.render('register',{msg:"Use only letters in first name,last name and username"})
         }
-        else if(lengthCheck(req.body.firstname)==false||lengthCheck(req.body.lastname)==false||lengthCheck(req.body.username)==false){
+        else if(lengthCheck(req.body.firstname,2,15)==false||lengthCheck(req.body.lastname,2,15)==false||lengthCheck(req.body.username,2,15)==false){
             res.render('register',{msg:"First name,last name and username must be between 2 and 15."})
         }
         else if(lengthCheck(req.body.password,8,20)==false){ //password length check min 8 max 20
@@ -150,7 +148,7 @@ app.post('/register', async (req, res) => {                                     
 })
 //----------------------------------------------------------
 app.get('/login', async(req, res)=> {                                                        // Renders Login Page
-    res.render("login")                                                                      // Renders login.ejs
+    res.render("login",{msg:""})                                                                      // Renders login.ejs
 })
 //----------------------------------------------------------
 app.post('/stats', async (req,res) => {                                                     // Called from login.ejs
@@ -163,11 +161,24 @@ app.post('/stats', async (req,res) => {                                         
  
     if (loggedUser == null) {                                                               // Checks if user and pass are correct
         res.render('login',{msg:'User does not exist'})
+    }
+    else if(lettersOnly(req.body.username)==false){
+        console.log("this is req.body.username"+req.body.username);
+        res.render('login',{msg:"Use only letters in username"})
     } 
+    else if(lengthCheck(req.body.username,2,15)==false){
+        console.log("this is req.body.username"+req.body.username);
+        res.render('login',{msg:"Use only letters in username"})
+    }
+    else if(lengthCheck(req.body.password,8,20)==false){                                   //password length check min 8 max 20
+        res.render('login',{msg:"Password must be greater than characters 8 and less than 20."})
+    }
+    else if(lettersAndNumbersCheck(req.body.password)==false){
+        res.render('login',{msg:"Password must contain both letters and numbers."})
+    }
     else {
         try {
             if (await bcrypt.compare(req.body.password, loggedUser.password)) {                  //Checks password from dataBase
-            //   res.redirect('/stats/' + req.body.username)                                     //Redirects to stats/(username of user)
             let player = await stats.findOne({
                 where: {
                     username: req.body.username
@@ -177,7 +188,7 @@ app.post('/stats', async (req,res) => {                                         
     
             } 
             else {
-              res.send('Not Allowed')
+              res.render('login',{msg:"Invalid user name or password."})
             }
           } 
           catch {
