@@ -4,24 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/login.css" type="text/css">
+    <link rel="stylesheet" href="/css/login.css">
     <title>Login</title>
 </head>
 <body>
     <div id="container">
-        <div id="header">
-            <h2>Valorant login</h2>
-        </div>
-        
+
         <div id="formDiv">
+            <div id="header">
+                <h2>Sign In</h2>
+            </div>
             <form action="/stats" method="post">
                 <div id="formBox">
-                    <!-- <legend>Log In</legend> -->
+                    
                     <% {%>
-                        Username: <input type="text" name="username" /><br><br>
-                        Password:  <input type="text" name="password" /><br><br>
+                        <input id="userIn" type="text" name="username" placeholder="username" /><br><br>
+                        <input id="pwIn" type="text" name="password" placeholder="password"/><br><br>
                     <%} %>
                     <input id="submitButton" type="submit" value="Login"/><br><br>
+
+                    <a href="./register.ejs" id="registerLink">create account</a>
                 </div>
             </form>
         </div>
@@ -32,7 +34,6 @@
 
     </div>  
 
-    
 </body>
 <script src="../server.js"></script>
 </html>

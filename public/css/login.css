@@ -1,24 +1,50 @@
-body {
-    background-image: url('../assets/bgLogin.png');
-    background-color: #DBC8AC;
+html { 
+    background: url('/assets/background/bgLogin.png') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    font-family: 'FF Mark W05', sans-serif; 
 }
 
-#container {
+body {
+    padding: 1%;
+}
+
+/* #container {
    display: flex;
    flex-direction: column;
-   align-items: center;
+} */
+
+h2 {
+    text-align: center;
+}
+
+#userIn, #pwIn {
+    background-color: lightgrey;
+    border: 0px solid white;
+    border-radius: 3px;
+    height: 40px;
+    padding: 5px 10px;
+}
+
+#userIn:active {
+    border: 1px solid black;
 }
 
 #formDiv {
-    border: 2px solid black;
     border-radius: 10px;
-    padding-top: 30px;
-    padding-bottom: 10px;
+    padding-top: 25px;
+    padding-bottom: 25px;
     padding-left: 40px;
     padding-right: 40px;
 
-    width: 40%;
+    width: 30%;
     background-color: white;
+    position: absolute;
+    top: 30%;
+    left: 8%;
 }
 
 #formBox {
@@ -27,10 +53,39 @@ body {
 }
 
 #submitButton {
-    width: 60%;
-    padding: 3%;
+    width: 45%;
+    padding: 2%;
     align-self: center;
     border-radius: 10px;
+    border: 2px solid lightgray;
+    background-color: white;
+    font-size: 15px;
+}
+
+#submitButton:hover {
+    background-color: lightgrey;
+    transition: 0.7ms;
+}
+
+a {
+    align-self: center;
+    text-decoration: none;
+    color: gray;
+    padding: 5px;
+    font-size: 15px;
+}
+
+a:hover {
+    color: black;
+    text-decoration: black;
 }
 
 
+@media screen and (min-width: 1800px) {
+    #formDiv {
+        width: 25%;
+        position: absolute;
+        top: 30%;
+        left: 10%;
+    }
+}
