@@ -15,7 +15,7 @@
             <div id="header">
                 <h2>Register account</h2>
             </div>
-            
+            <!--comment -->
             <form action="/registerUser" method="post">
                 <div id="formBox">
         
@@ -23,11 +23,13 @@
                         <input id="userIn" type="text" name="firstname" placeholder="first name"/><br>
                         <input id="userIn" type="text" name="lastname" placeholder="last name"/><br>
                         <input id="userIn" type="text" name="username" placeholder="username"/><br>
-                        <input id="userIn" type="text" name="email" placeholder="email"/><br>
-                        <input id="userIn" type="text" name="password" placeholder="password"/><br><br>
+                        <input id="userIn" type="email" name="email" placeholder="email"/><br>
+                        <input id="userIn" type="password" name="password" placeholder="password"/><br><br>
 
                         <input type="submit" value="register" id="submitButton"/><br>
                     <%} %>
+
+                        <a href="./login.ejs" id="loginLink">have an account?</a>
                     
                         <p id="msg"><%= msg %></p>
                 </div>
@@ -44,5 +46,3 @@
 </body>
 <script src="../server.js"></script>
 </html>
-
-

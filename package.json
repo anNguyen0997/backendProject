@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx sequelize db:create && npx sequelize db:migrate && nodemon index.js"
-
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
