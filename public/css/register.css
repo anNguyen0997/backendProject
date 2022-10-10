@@ -9,11 +9,12 @@ html {
 }
 
 body {
-    padding: 1%;
+    padding: 1% 5%;
 }
 
 h2 {
     text-align: center;
+    color: white;
 }
 
 #formDiv {
@@ -24,9 +25,9 @@ h2 {
     padding-right: 40px;
 
     width: 30%;
-    background-color: white;
+    background: rgba(204, 98, 98, 0.6);
     position: absolute;
-    top: 30%;
+    top: 8%;
 }
 
 #formBox {
@@ -35,11 +36,15 @@ h2 {
 }
 
 #userIn {
-    background-color: lightgrey;
+    background-color: #EDEDED;
     border: 0px solid white;
     border-radius: 3px;
     height: 40px;
     padding: 5px 10px;
+}
+
+input {
+    font-size: 16px;
 }
 
 #submitButton {
@@ -47,11 +52,26 @@ h2 {
     padding: 2%;
     align-self: center;
     border-radius: 10px;
-    border: 2px solid lightgray;
+    border: 2px solid #EDEDED;
     background-color: white;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 #submitButton:hover {
     background-color: lightgrey;
+}
+
+#loginLink {
+    align-self: center;
+    text-decoration: none;
+    color: white;
+}
+
+#loginLink:hover {
+    color: black;
+}
+
+#msg {
+    align-self: center;
+    font-size: 25px;
 }
