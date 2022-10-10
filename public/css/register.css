@@ -15,6 +15,7 @@ body {
 h2 {
     text-align: center;
     color: white;
+    font-size: 30px;
 }
 
 #formDiv {
@@ -27,7 +28,7 @@ h2 {
     width: 30%;
     background: rgba(204, 98, 98, 0.6);
     position: absolute;
-    top: 8%;
+    top: 15%;
 }
 
 #formBox {
