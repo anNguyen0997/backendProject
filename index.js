@@ -74,9 +74,9 @@ function getStats(){
     rank = ['Iron','Bronze','Silver','Gold','Platinum','Diamond','Ascendant','Immortal']   //List of all Valorant ranks
 
     userstats = {                                                                           // Generate random stats for user
-    agent: agents[Math.floor(Math.random()*20)],
-    gun: guns[Math.floor(Math.random()*19)],
-    rank: rank[Math.floor(Math.random()*9)] + ' ' + Math.ceil(Math.random()*3),
+    agent: agents[Math.floor(Math.random()*19)],
+    gun: guns[Math.floor(Math.random()*18)],
+    rank: rank[Math.floor(Math.random()*8)] + ' ' + Math.ceil(Math.random()*3),
     kd: (Math.random()*3).toFixed(2),
     winRate: Math.floor(Math.random()*101)
     }
