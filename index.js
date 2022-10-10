@@ -86,6 +86,10 @@ function getStats(){
     return userstats                                                                        // return stats as an object
 }
 //------------------------------------------------------------------------------------------------------------------------
+app.get('/', (req, res)=> {                                            
+    res.render("home")                                                   
+})
+//----------------------------------------------------------
 app.get('/register', (req, res)=> {                                                         // Renders Register Page
     res.render("register",{msg:'Join the battle'})                                                    // Renders register.ejs
 })
