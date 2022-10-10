@@ -7,31 +7,49 @@ html {
     font-family: 'FF Mark W05', sans-serif;
   }
 
-body{
-    position: relative;
-    top: 50%;
+body {
+    padding: 2%;
 }
 
 #title {
     text-align: center;
+    color: white;
+    font-size: 30px;
 }
 
-#main{
+#main {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    
 }
 
-.box{
+.box {
     background-color: #ece8e1;
     border-radius: 10px;
-    width: 20%;
-    height: 15%;
+
+    margin-top: 400px;
+    margin-left: 100px;
+    margin-right: 100px;
+    padding: 1.5%;
+
+    display: flex;
+    flex-direction: column;
+
+    background: rgba(255, 255, 255, 0.7);
 }
 
-h4{
+h4 {
     text-align: center;
+    font-size: 22px;
 }
 
-p{
-    text-align: center;
+a {
+    align-self: center;
+    text-decoration: none;
+    color: darkblue;
+    font-size: 18px;
+}
+
+a:hover {
+    color: white
 }
