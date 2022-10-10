@@ -29,13 +29,13 @@ To begin using the app head over to our [Home][1] Page. Click On the [Register][
 
 ## Screenshots
 Home Page
-<img src="">
+<img src="./screenshots/ssHome.png">
 Register Page
-<img src="">
+<img src="./screenshots/ssRegister.png">
 Login Page
-<img src="">
+<img src="./screenshots/ssLogin.png">
 Stats Page
-<img src="">
+<img src="./screenshots/ssStats.png">
 
 ### Developer Team
 
