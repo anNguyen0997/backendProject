@@ -110,9 +110,12 @@ app.post('/register', async (req, res) => {                                     
        
         if(Object.keys(userExists).length != 0 || validateEmail(req.body.email)==false) {      // Checks if email exist & checks to see if it is a valid email
             if(validateEmail(req.body.email)==false){
-                res.render('register',{msg:'Email must be > 5 char < 24 char long and have @ symbol.'})}
+                res.render('register',{msg:'Email must be > 5 characters < 30 char long and have @ symbol.'})}
             else{
                 res.render('register',{msg:'Email already exist'})}
+        }
+        else if(req.body.confirmPassword != req.body.password){
+            res.render('register',{msg:"Please make sure both passwords you have entered match."})
         }
         else if(lettersOnly(req.body.firstname)==false||lettersOnly(req.body.lastname)==false||lettersOnly(req.body.username)==false){      
             res.render('register',{msg:"Use only letters in first name,last name and username"})
