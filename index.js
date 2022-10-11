@@ -116,7 +116,7 @@ app.post('/register', async (req, res) => {                                     
             if(validateEmail(req.body.email)==false){
                 res.render('register',{msg:'Email must be > 5 characters < 30 char long and have @ symbol.'})}
             else{
-                res.render('register',{msg:'Email already exist'})}
+                res.render('register',{msg:'User already exist'})}
         }
         else if(req.body.confirmPassword != req.body.password){
             res.render('register',{msg:"Please make sure both passwords you have entered match."})
@@ -127,57 +127,29 @@ app.post('/register', async (req, res) => {                                     
         else if(lengthCheck(req.body.firstname,2,15)==false||lengthCheck(req.body.lastname,2,15)==false||lengthCheck(req.body.username,2,15)==false){
             res.render('register',{msg:"First name,last name and username must be between 2 and 15."})
         }
-        else if(lengthCheck(req.body.password,8,20)==false){ //password length check min 8 max 20
+        else if(lengthCheck(req.body.password,8,20)==false){                                    //password length check min 8 max 20
             res.render('register',{msg:"Password must be greater than characters 8 and less than 20."})
         }
         else if(lettersAndNumbersCheck(req.body.password)==false){
             res.render('register',{msg:"Password must contain both letters and numbers."})
         }
         else {
-            let userExists = await users.findAll({
-                where: {
-                    email: req.body.email
-                }
+            const hashedPassword = await bcrypt.hash(req.body.password, saltRounds)                   // Hashes user password for database
+            await users.create({                                                              // Creates instance in users table
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                username: req.body.username,
+                password: hashedPassword,
+                email: req.body.email,
             })
-           
-            if(Object.keys(userExists).length != 0 || validateEmail(req.body.email)==false) {      // Checks if email exist & checks to see if it is a valid email
-                if(validateEmail(req.body.email)==false){
-                    res.render('register',{msg:'Email must be > 5 characters < 30 char long and have @ symbol.'})}
-                else{
-                    res.render('register',{msg:'Email already exist'})}
-            }
-            else if(req.body.confirmPassword != req.body.password){
-                res.render('register',{msg:"Please make sure both passwords you have entered match."})
-            }
-            else if(lettersOnly(req.body.firstname)==false||lettersOnly(req.body.lastname)==false||lettersOnly(req.body.username)==false){      
-                res.render('register',{msg:"Use only letters in first name,last name and username"})
-            }
-            else if(lengthCheck(req.body.firstname,2,15)==false||lengthCheck(req.body.lastname,2,15)==false||lengthCheck(req.body.username,2,15)==false){
-                res.render('register',{msg:"First name,last name and username must be between 2 and 15."})
-            }
-            else if(lengthCheck(req.body.password,8,20)==false){ //password length check min 8 max 20
-                res.render('register',{msg:"Password must be greater than characters 8 and less than 20."})
-            }
-            else if(lettersAndNumbersCheck(req.body.password)==false){
-                res.render('register',{msg:"Password must contain both letters and numbers."})
-            }
-            else {
-                const hashedPassword = await bcrypt.hash(req.body.password, saltRounds)                   // Hashes user password for database
-                await users.create({                                                              // Creates instance in users table
-                    firstname: req.body.firstname,
-                    lastname: req.body.lastname,
-                    username: req.body.username,
-                    password: hashedPassword,
-                    email: req.body.email,
-                })
+    
+            userstats = getStats()                                                             
+            userstats['username'] = req.body.username
         
-                userstats = getStats()                                                             
-                userstats['username'] = req.body.username
-            
-                await stats.create(userstats)                                                   // Creates instance in stats table
-        
-                res.redirect('/login')                                                          // redirects to /login
-            }   
+            await stats.create(userstats)                                                   // Creates instance in stats table
+    
+            res.redirect('/login')                                                          // redirects to /login
+               
         } 
     
     }
