@@ -20,6 +20,18 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 const bcrypt = require('bcrypt');                                                           // Imports package for enrypting passwords
 const saltRounds = 10;
+
+const log = require('./logs.js')                                                            // Import package for logging
+
+app.all('*', (req, res, next) => {
+    log.info({
+        action: req.method,
+        path: req.path,
+        body: req.body,
+        time: new Date()
+    })
+    next()
+})
 //------------------------------------------------------------------------------------------------------------------------
 function lettersAndNumbersCheck(word){
     if(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$/.test(word)){
