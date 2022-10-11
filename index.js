@@ -11,9 +11,9 @@ app.use(express.static('assets'))
 
 const { Sequelize } = require('sequelize');                                                 // Initializes sequelize
 const { users,stats } = require('./models')                                                 // Initializes models
-// const sequelize = new Sequelize('postgres://jonathanbatalla@localhost:5432/postgres')     // Connects to database
+
 const sequelize = new Sequelize('postgres://postgres:testing1234xA@localhost:5432/backendBase')
-// const sequelize = new Sequelize('postgres://rory@localhost:5432/backendBase')  
+
 //const sequelize = new Sequelize('postgres://wenhwzxhzxocxo:dc1b6e72a92c00a43814a461ab66e834f01da5260663128e5765def101f4c274@ec2-3-93-206-109.compute-1.amazonaws.com:5432/d2ejtutdcnmsab')
 
 const bodyParser = require('body-parser')
@@ -68,7 +68,7 @@ function getStats(){
     agents = ['Fade','Neon','Chamber','Skye','Yoru','Astra','KAYO','Phoenix','Raze',       // List of all Valorant Agents
     'Brimstone','Jett','Sage','Viper','Breach','Cypeher','Sova','Omen','Reyna','Killjoy']
     
-    guns = ['Operator','Vandal','Phantom','Classic','Judge','Marshall','Odin','Sheriff',    // List of all Valorant guns
+    guns = ['Operator','Vandal','Phantom','Classic','Judge','Marshal','Odin','Sheriff',    // List of all Valorant guns
     'Spectre','Ares','Bulldog','Frenzy','Ghost','Guardian','Bucky','Knife','Shorty','Stinger']
 
     rank = ['Iron','Bronze','Silver','Gold','Platinum','Diamond','Ascendant','Immortal']   //List of all Valorant ranks
@@ -77,8 +77,8 @@ function getStats(){
     agent: agents[Math.floor(Math.random()*19)],
     gun: guns[Math.floor(Math.random()*18)],
     rank: rank[Math.floor(Math.random()*8)] + ' ' + Math.ceil(Math.random()*3),
-    kd: (Math.random()*3).toFixed(2),
-    winRate: Math.floor(Math.random()*101)
+    kd: (Math.random()*3).toFixed(2) + .01, 
+    winRate: Math.floor(Math.random()*100) + 1
     }
 
     return userstats                                                                        // return stats as an object
