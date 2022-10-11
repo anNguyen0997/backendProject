@@ -67,6 +67,7 @@ body {
     align-content: space-around;
     font-size: 18px;
 }
+
 #gun{
     /* width: 15vw; */
     height: 10vh;
@@ -96,7 +97,6 @@ h3{
 
 @media screen and (max-width: 800px) {
 
-
     #warStats {
         display: flex;
         flex-direction: column;
@@ -106,6 +106,7 @@ h3{
     #main {
         top: 2%;
         width: 80%;
+        height: 125%;
     }
 
     #agentBox {
@@ -135,9 +136,3 @@ h3{
         width: 80%;
     }
 }
-
-
-
-
-
-

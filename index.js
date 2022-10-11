@@ -12,7 +12,7 @@ app.use(express.static('assets'))
 const { Sequelize } = require('sequelize');                                                 // Initializes sequelize
 const { users,stats } = require('./models')                                                 // Initializes models
 
-const sequelize = new Sequelize('postgres://postgres:testing1234xA@localhost:5432/backendBase')
+const sequelize = new Sequelize('postgres://postgres:@localhost:5432/backendBase')
 
 
 const bodyParser = require('body-parser')

@@ -1,0 +1,16 @@
+{"level":"info","message":{"action":"GET","body":{},"path":"/","time":"2022-10-11T20:30:14.682Z"},"service":"val-stats"}
+{"level":"info","message":{"action":"GET","body":{},"path":"/register","time":"2022-10-11T20:32:03.864Z"},"service":"val-stats"}
+{"level":"info","message":{"action":"POST","body":{"confirmPassword":"password1234","email":"roryn4545@gmail.com","firstname":"An","lastname":"Nguyen","password":"password1234","username":"joyboy"},"path":"/register","time":"2022-10-11T20:32:26.399Z"},"service":"val-stats"}
+{"level":"info","message":{"action":"GET","body":{},"path":"/login","time":"2022-10-11T20:32:26.932Z"},"service":"val-stats"}
+{"level":"info","message":{"action":"POST","body":{"password":"password1234","username":"joyboy"},"path":"/stats","time":"2022-10-11T20:32:40.873Z"},"service":"val-stats"}
+{"level":"info","message":{"action":"POST","body":{"password":"password1234","username":"joyboy"},"path":"/stats","time":"2022-10-11T20:32:50.864Z"},"service":"val-stats"}
+{"level":"info","message":{"action":"POST","body":{"password":"password1234","username":"joyboy"},"path":"/stats","time":"2022-10-11T20:33:05.496Z"},"service":"val-stats"}
+{"level":"info","message":{"action":"POST","body":{"password":"password1234","username":"joyboy"},"path":"/stats","time":"2022-10-11T20:33:22.761Z"},"service":"val-stats"}
+{"level":"info","message":{"action":"POST","body":{"password":"password1234","username":"joyboy"},"path":"/stats","time":"2022-10-11T20:33:30.510Z"},"service":"val-stats"}
+{"level":"info","message":{"action":"POST","body":{"password":"password1234","username":"joyboy"},"path":"/stats","time":"2022-10-11T20:33:37.499Z"},"service":"val-stats"}
+{"level":"info","message":{"action":"POST","body":{"password":"password1234","username":"joyboy"},"path":"/stats","time":"2022-10-11T20:33:49.469Z"},"service":"val-stats"}
+{"level":"info","message":{"action":"POST","body":{"password":"password1234","username":"joyboy"},"path":"/stats","time":"2022-10-11T20:35:14.379Z"},"service":"val-stats"}
+{"level":"info","message":{"action":"POST","body":{"password":"password1234","username":"joyboy"},"path":"/stats","time":"2022-10-11T20:35:19.105Z"},"service":"val-stats"}
+{"level":"info","message":{"action":"POST","body":{"password":"password1234","username":"joyboy"},"path":"/stats","time":"2022-10-11T20:35:28.802Z"},"service":"val-stats"}
+{"level":"info","message":{"action":"POST","body":{"password":"password1234","username":"joyboy"},"path":"/stats","time":"2022-10-11T20:35:54.709Z"},"service":"val-stats"}
+{"level":"info","message":{"action":"POST","body":{"password":"password1234","username":"joyboy"},"path":"/stats","time":"2022-10-11T20:36:06.678Z"},"service":"val-stats"}
