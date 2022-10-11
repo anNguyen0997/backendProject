@@ -66,7 +66,7 @@ function validateEmail(mail){
 //----------------------------------------------------------
 function getStats(){
     agents = ['Fade','Neon','Chamber','Skye','Yoru','Astra','KAYO','Phoenix','Raze',       // List of all Valorant Agents
-    'Brimstone','Jett','Sage','Viper','Breach','Cypeher','Sova','Omen','Reyna','Killjoy']
+    'Brimstone','Jett','Sage','Viper','Breach','Cypher','Sova','Omen','Reyna','Killjoy']
     
     guns = ['Operator','Vandal','Phantom','Classic','Judge','Marshal','Odin','Sheriff',    // List of all Valorant guns
     'Spectre','Ares','Bulldog','Frenzy','Ghost','Guardian','Bucky','Knife','Shorty','Stinger']
@@ -77,7 +77,7 @@ function getStats(){
     agent: agents[Math.floor(Math.random()*19)],
     gun: guns[Math.floor(Math.random()*18)],
     rank: rank[Math.floor(Math.random()*8)] + ' ' + Math.ceil(Math.random()*3),
-    kd: (Math.random()*3).toFixed(2) + .01, 
+    kd: (Math.random()*3 + .01).toFixed(2), 
     winRate: Math.floor(Math.random()*100) + 1
     }
 
