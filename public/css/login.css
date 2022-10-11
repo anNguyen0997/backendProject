@@ -81,11 +81,11 @@ a:hover {
 }
 
 
-@media screen and (min-width: 1800px) {
+@media screen and (max-width: 800px) {
     #formDiv {
-        width: 25%;
-        position: absolute;
-        top: 30%;
-        left: 10%;
+        align-self: center;
+        width: 60%;
+        margin-left: 2%;
+        margin-right: 2%;
     }
 }
