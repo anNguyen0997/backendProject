@@ -19,18 +19,17 @@
                 <div id="formBox">
         
                     <% {%>
-                        <input id="userIn" type="text" name="firstname" placeholder="first name"/><br>
-                        <input id="userIn" type="text" name="lastname" placeholder="last name"/><br>
-                        <input id="userIn" type="text" name="username" placeholder="username"/><br>
+                        <input id="userIn" type="text" name="firstname" pattern="[A-Za-z]{2,15}"title="letters only, min length 2 max 15" class="form-control" placeholder="first name"/><br>
+                        <input id="userIn" type="text" name="lastname" pattern="[A-Za-z]{2,15}"title="letters only, min length 2 max 15" class="form-control" placeholder="last name"/><br>
+                        <input id="userIn" type="text" name="username" pattern="[A-Za-z]{2,15}"title="letters only, min length 2 max 15" class="form-control" placeholder="username"/><br>
                         <input id="userIn" type="email" name="email" placeholder="email"/><br>
-                        <input id="userIn" type="password" name="password" placeholder="password"/><br>
-                        <input id="userIn" type="password" name="confirmPassword" placeholder="confirm password"/>
-                        <h6>Password must contain only letters and numbers. Must be between 8-20 characters long. </h6>
+                        <input id="userIn" type="password" name="password"pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$"title="must contain at least one letter and one number. min 8 char max 20"class="form-control" placeholder="password"/><br><br>
+                        <h6>Password must contain only letters and numbers.Must be between 8-20 characters long. </h6>
+                        <input id="userIn" type="password" name="confirmPassword"pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,20}$"title="Must contain at least one letter and one number. min 8 char max 20"class="form-control" placeholder="confirm password"/><br><br>
                         <input type="submit" value="register" id="submitButton"/><br>
                     <%} %>
 
                         <a href="https://valorant-stats1.herokuapp.com/login" id="loginLink">have an account?</a>
-                    
                         <p id="msg"><%= msg %></p>
                 </div>
             </form>

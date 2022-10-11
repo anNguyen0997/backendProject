@@ -117,7 +117,7 @@ app.post('/register', async (req, res) => {                                     
         else if(req.body.confirmPassword != req.body.password){
             res.render('register',{msg:"Please make sure both passwords you have entered match."})
         }
-        else if(lettersOnly(req.body.firstname)==false||lettersOnly(req.body.lastname)==false||lettersOnly(req.body.username)==false){      
+        else if(lettersOnly(req.body.firstname)==false||lettersOnly(req.body.lastname)==false||lettersOnly(req.body.username)==false){ 
             res.render('register',{msg:"Use only letters in first name,last name and username"})
         }
         else if(lengthCheck(req.body.firstname,2,15)==false||lengthCheck(req.body.lastname,2,15)==false||lengthCheck(req.body.username,2,15)==false){
