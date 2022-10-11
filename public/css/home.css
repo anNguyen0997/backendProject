@@ -20,7 +20,6 @@ body {
 #main {
     display: flex;
     justify-content: center;
-    
 }
 
 .box {
@@ -52,4 +51,18 @@ a {
 
 a:hover {
     color: white
+}
+
+@media screen and (max-width: 1400px) {
+    .box {
+        margin-top: 250px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .box {
+        margin-top: 250px;
+        margin-left: 50px;
+        margin-right: 50px;
+    }
 }
